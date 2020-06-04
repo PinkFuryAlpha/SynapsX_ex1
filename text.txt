@@ -1,0 +1,68 @@
+mport jdk.nashorn.internal.runtime.regexp.RegExp;
+
+import java.util.*;
+import java.util.regex.Pattern;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+
+    //Introduceti aici caracterele dorite:
+    //String input="apples, pears # and bananas\ngrapes\nbananas !apples\ncacao # cu lapte";
+        String input2="Tudor merge la scoala\n<h>Informatica</h>\nRegexs unt super";
+
+    String[] commentMarkers={"</h>","x","<h>","."};
+
+
+    System.out.println(input2);
+
+    System.out.println("\n");
+
+    solution(input2,commentMarkers);
+
+    }
+
+    public static String solution(String input,String[] symbols){
+
+        String[] linesOfText=input.split("\n");
+
+        /*for(String s:linesOfText){
+            System.out.println(s+"\n");
+            break;
+        }*/
+
+        // buffer in care o sa adaug fiecare linie procesata
+       StringBuilder buffer=new StringBuilder();
+
+       //parcurg fiecare linie pe rand
+       for(String s:linesOfText){
+
+           //iau fiecare symbol pe rand si elimin cu un regex toate aparitiile textului de dupa el
+           for(int j=0;j<symbols.length;j++) {
+
+               s = s.replaceAll("[ ]*["+symbols[j]+"].*$","");
+
+           }
+
+           //Dont mind this, I felt kinda stupid after the error :))
+           /*if(s.charAt(s.length()-1)==' '){
+               s=s.substring(0,s.length()-1);
+               buffer.append(s+"\n");
+           }else {
+               buffer.append(s + "\n");
+           }*/
+
+           // Dau append la fiecare linie de text in buffer iar la sfarsit il printez
+
+           if(!s.equals(""))
+            buffer.append(s + "\n");
+
+       }
+
+        System.out.println(buffer.toString());
+
+        return input;
+    }
+
+}
