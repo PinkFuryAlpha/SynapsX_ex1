@@ -53,7 +53,7 @@ public class Main {
 
         System.out.println(buffer.toString());
 
-        return input;
+        return buffer.toString();
     }
 
 }
